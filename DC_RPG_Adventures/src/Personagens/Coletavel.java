@@ -11,6 +11,6 @@ package Personagens;
  * @author Jeanne
  */
 public interface Coletavel {
-    public abstract void coletar();
+    public abstract void coletar(int i,Item itens[]);
     
 }

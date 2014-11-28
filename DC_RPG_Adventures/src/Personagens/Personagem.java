@@ -37,6 +37,63 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     public void interagir() {
         
     }
+
+    public Personagem(String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
+        this.name = name;
+        this.height = height;
+        this.reflexes = reflexes;
+        this.physique = physique;
+        this.knowledge = knowledge;
+        this.perception = perception;
+        this.presence = presence;
+        this.speed = speed;
+        this.unarmedBDV = unarmedBDV;
+        this.p_l_bonus = p_l_bonus;
+        this.characterPoints = characterPoints;
+        this.currentResistence = currentResistence;
+        this.itens = new Item[10];
+        this.itens = Item.inicializaItens(this.itens);
+    }
+
+    public Personagem() {
+        this.name = "";
+        this.height = 0.00F;
+        this.reflexes = 0;
+        this.physique = 0;
+        this.knowledge = 0;
+        this.perception = 0;
+        this.presence = 0;
+        this.speed = 0;
+        this.unarmedBDV = 0;
+        this.p_l_bonus = 0;
+        this.characterPoints = 0;
+        this.currentResistence = 0;
+        this.itens = new Item[12];
+        this.power = new ArrayList<>();
+    }
+
+    public Personagem(Personagem personagemOriginal) {
+        this.name = personagemOriginal.name;
+        this.height = personagemOriginal.height;
+        this.reflexes = personagemOriginal.reflexes;
+        this.physique = personagemOriginal.physique;
+        this.knowledge = personagemOriginal.knowledge;
+        this.perception = personagemOriginal.perception;
+        this.presence = personagemOriginal.presence;
+        this.speed = personagemOriginal.speed;
+        this.unarmedBDV = personagemOriginal.unarmedBDV;
+        this.p_l_bonus = personagemOriginal.p_l_bonus;
+        this.characterPoints = personagemOriginal.characterPoints;
+        this.currentResistence = personagemOriginal.currentResistence;
+        this.itens = new Item[12];
+        this.itens = personagemOriginal.itens;
+        this.power = new ArrayList<>();
+        this.power.addAll(personagemOriginal.power);
+        
+    }
+    
+    
+    public abstract void inicializaPoderes();
     @Override 
     public int compareTo(Personagem personagemDeFora) {
         int tam = personagemDeFora.name.length();
