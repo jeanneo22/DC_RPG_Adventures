@@ -27,9 +27,12 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
        depois que o heroi ou vilao tem sido criado
     */
     protected int characterPoints; 
-    protected ArrayList<Poder> power; // Poderes do personagem
+    protected ArrayList<String> powers; // Poderes do personagem
     protected int currentResistence; // resistencia atual do personagem
     protected Item itens[];
+    
+    protected static final int MIN_CHARACTER_POINTS = 1;
+    protected static final int MAX_CHARACTER_POINTS = 400;
     
     public abstract void atacar();
     public abstract void defender();
@@ -53,7 +56,130 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.currentResistence = currentResistence;
         this.itens = new Item[10];
         this.itens = Item.inicializaItens(this.itens);
+        this.powers = new ArrayList<>();
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public void setReflexes(int reflexes) {
+        this.reflexes = (reflexes >= 1 && reflexes <= 3)?reflexes:0;
+    }
+
+    public void setPhysique(int physique) {
+        this.physique = (physique >= 1 && physique <= 3)?physique:0;
+    }
+
+    public void setKnowledge(int knowledge) {
+        this.knowledge = (knowledge >= 1 && knowledge <= 3)?knowledge:0;
+    }
+
+    public void setPerception(int perception) {
+        this.perception = (perception >= 1 && perception <= 3)?perception:0;
+    }
+
+    public void setPresence(int presence) {
+        this.presence = (presence >= 1 && presence <= 3)?presence:0;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setUnarmedBDV(int unarmedBDV) {
+        this.unarmedBDV = (unarmedBDV >= 1 && unarmedBDV >= 10)?unarmedBDV:0;
+    }
+
+    public void setP_l_bonus(int p_l_bonus) {
+        this.p_l_bonus = (p_l_bonus >=1 && p_l_bonus <= 10)?p_l_bonus:0;
+    }
+
+    public void setCharacterPoints(int characterPoints) {
+        this.characterPoints = (characterPoints >= Personagem.MIN_CHARACTER_POINTS && characterPoints <= Personagem.MAX_CHARACTER_POINTS)?characterPoints:0;
+    }
+
+    public void setPowers(ArrayList<String> powers) {
+        this.powers = powers;
+    }
+
+    public void setCurrentResistence(int currentResistence) {
+        this.currentResistence = (currentResistence >= 0 && currentResistence <= 100)?currentResistence:0;
+    }
+
+    public void setItens(Item[] itens) {
+        this.itens = itens;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public int getReflexes() {
+        return reflexes;
+    }
+
+    public int getPhysique() {
+        return physique;
+    }
+
+    public int getKnowledge() {
+        return knowledge;
+    }
+
+    public int getPerception() {
+        return perception;
+    }
+
+    public int getPresence() {
+        return presence;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getUnarmedBDV() {
+        return unarmedBDV;
+    }
+
+    public int getP_l_bonus() {
+        return p_l_bonus;
+    }
+
+    public int getCharacterPoints() {
+        return characterPoints;
+    }
+
+    public ArrayList<String> getPowers() {
+        return powers;
+    }
+
+    public int getCurrentResistence() {
+        return currentResistence;
+    }
+
+    public Item[] getItens() {
+        return itens;
+    }
+
+    public static int getMIN_CHARACTER_POINTS() {
+        return MIN_CHARACTER_POINTS;
+    }
+
+    public static int getMAX_CHARACTER_POINTS() {
+        return MAX_CHARACTER_POINTS;
+    }
+    
+    
 
     public Personagem() {
         this.name = "";
@@ -69,7 +195,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.characterPoints = 0;
         this.currentResistence = 0;
         this.itens = new Item[12];
-        this.power = new ArrayList<>();
+        this.powers = new ArrayList<>();
     }
 
     public Personagem(Personagem personagemOriginal) {
@@ -87,8 +213,8 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.currentResistence = personagemOriginal.currentResistence;
         this.itens = new Item[12];
         this.itens = personagemOriginal.itens;
-        this.power = new ArrayList<>();
-        this.power.addAll(personagemOriginal.power);
+        this.powers = new ArrayList<>();
+        this.powers.addAll(personagemOriginal.powers);
         
     }
     

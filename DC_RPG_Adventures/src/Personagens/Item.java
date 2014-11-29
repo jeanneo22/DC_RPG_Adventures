@@ -10,9 +10,10 @@ package Personagens;
  *
  * @author Jeanne
  */
-public class Item implements Coletavel{
+public class Item implements Coletavel,Interagivel{
     private String name;
     private String description;
+    private static final short MAX_ITENS = 10;
 
     public Item(String name, String description) {
         this.name = name;
@@ -45,9 +46,9 @@ public class Item implements Coletavel{
         this.description = description;
     }
     
-    public static Item[] inicializaTodosItens(int tam) {
-        Item itens[] = new Item[tam];
-        for(int i = 0; i < tam; i++) {
+    public static Item[] inicializaTodosItens() {
+        Item itens[] = new Item[Item.MAX_ITENS];
+        for(int i = 0; i < Item.MAX_ITENS; i++) {
             itens[i].name = "Item"+Integer.toString(i);
             switch(i) {
                 case 1:
@@ -76,6 +77,11 @@ public class Item implements Coletavel{
         return itens;
             
     }
+
+    public static short getMAX_ITENS() {
+        return MAX_ITENS;
+    }
+    
     
     public static Item[] inicializaItens(Item itens[]) {
         for(int i = 0; i < itens.length; i++) {
@@ -86,9 +92,23 @@ public class Item implements Coletavel{
     }
     @Override
     public void coletar(int i,Item itens[]) {
-        Item todosItens[] = new Item[10];
-        todosItens = inicializaTodosItens(todosItens.length);
+        Item todosItens[] = new Item[Item.MAX_ITENS];
+        todosItens = inicializaTodosItens();
         itens[i] = todosItens[i];
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Item) { 
+            Item I = (Item) obj;
+            return (this.name.equals(I.name) && this.description.equals(I.description));
+        }
+        return false;
     
+    }
+
+    @Override
+    public void interagir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
