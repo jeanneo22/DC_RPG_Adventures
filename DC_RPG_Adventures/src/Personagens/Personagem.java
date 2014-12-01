@@ -7,6 +7,7 @@
 package Personagens;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +39,9 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     public abstract void defender();
     public abstract void mover();
     public void interagir() {
+        byte msg;
+        msg = Byte.parseByte(JOptionPane.showInputDialog("Escolha uma mensagem: \n 1. Vou investigar o mapa"    
+                    +"2. Vou enfrentar o vilao"));   
         
     }
 
@@ -222,17 +226,10 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     public abstract void inicializaPoderes();
     @Override 
     public int compareTo(Personagem personagemDeFora) {
-        int tam = personagemDeFora.name.length();
-        if(this.name.length() > personagemDeFora.name.length()) tam = this.name.length();
-        for(int i = 0; i < tam; i++)
-            if(this.name.charAt(i) > personagemDeFora.name.charAt(i))
-               return 1;
-        if(this.name.equals(personagemDeFora.name))
-                return 0;
-        else
-            return -1;
+        return this.name.compareTo(personagemDeFora.name);
     
     }
+    
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Personagem) {
