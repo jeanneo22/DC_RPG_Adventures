@@ -11,6 +11,6 @@ package Personagens;
  * @author Jeanne
  */
 public interface Lutavel {
-    public abstract void atacar();
+    public abstract void atacar(Personagem timePersonagens[]);
     public abstract void defender();
 }

@@ -6,6 +6,9 @@
 
 package Personagens.Herois;
 
+import Personagens.Personagem;
+import Personagens.Viloes.Vilao;
+import Fases.*;
 import java.util.ArrayList;
 
 /**
@@ -66,9 +69,20 @@ public class Aquaman extends Heroi{
     public void inicializaEquipment() {
         this.equipment.add("Atlantean Cybernetic Left Hand");
     }
+    
     @Override
-    public void atacar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atacar(Personagem timePersonagens[]) {
+        boolean ehVilao = false;
+        float dist = 0.0f;
+        int i =0;
+        while(!ehVilao && dist > Mapa.getDIST_MAX_PARA_ATAQUE() && i < Personagem.MAX_PERSONAGENS_TIME) {
+             if(timePersonagens[i] instanceof Vilao) {
+                 ehVilao = true;
+                 dist = Ponto.distancia(this.getPosicao(),timePersonagens[i].getPosicao());
+             }
+             i++;
+        }
+        if(ehVilao && dist <= 5) System.out.println("Atacar");
     }
 
     @Override

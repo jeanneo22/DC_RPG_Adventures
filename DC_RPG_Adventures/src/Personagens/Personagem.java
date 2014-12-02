@@ -6,6 +6,7 @@
 
 package Personagens;
 
+import Fases.Ponto;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -31,12 +32,15 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     protected ArrayList<String> powers; // Poderes do personagem
     protected int currentResistence; // resistencia atual do personagem
     protected Item itens[];
+    protected Ponto posicao;
     
     protected static final int MIN_CHARACTER_POINTS = 1;
     protected static final int MAX_CHARACTER_POINTS = 400;
+    protected static final int MAX_PERSONAGENS_TIME = 4;
     
-    public abstract void atacar();
+    public abstract void atacar(Personagem timePersonagens[]);
     public abstract void defender();
+
     public abstract void mover();
     public void interagir() {
         byte msg;
@@ -45,7 +49,9 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         
     }
 
-    public Personagem(String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
+    public Personagem(String name, float height, int reflexes, int physique, 
+                        int knowledge, int perception, int presence, int speed, int unarmedBDV, 
+                        int p_l_bonus, int characterPoints, int currentResistence,float x,float y) {
         this.name = name;
         this.height = height;
         this.reflexes = reflexes;
@@ -61,6 +67,46 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.itens = new Item[10];
         this.itens = Item.inicializaItens(this.itens);
         this.powers = new ArrayList<>();
+        posicao = new Ponto(x,y);
+    }
+    
+     public Personagem() {
+        this.name = "";
+        this.height = 0.00F;
+        this.reflexes = 0;
+        this.physique = 0;
+        this.knowledge = 0;
+        this.perception = 0;
+        this.presence = 0;
+        this.speed = 0;
+        this.unarmedBDV = 0;
+        this.p_l_bonus = 0;
+        this.characterPoints = 0;
+        this.currentResistence = 0;
+        this.itens = new Item[12];
+        this.powers = new ArrayList<>();
+        this.posicao = new Ponto();
+    }
+
+    public Personagem(Personagem personagemOriginal) {
+        this.name = personagemOriginal.name;
+        this.height = personagemOriginal.height;
+        this.reflexes = personagemOriginal.reflexes;
+        this.physique = personagemOriginal.physique;
+        this.knowledge = personagemOriginal.knowledge;
+        this.perception = personagemOriginal.perception;
+        this.presence = personagemOriginal.presence;
+        this.speed = personagemOriginal.speed;
+        this.unarmedBDV = personagemOriginal.unarmedBDV;
+        this.p_l_bonus = personagemOriginal.p_l_bonus;
+        this.characterPoints = personagemOriginal.characterPoints;
+        this.currentResistence = personagemOriginal.currentResistence;
+        this.itens = new Item[12];
+        this.itens = personagemOriginal.itens;
+        this.powers = new ArrayList<>();
+        this.powers.addAll(personagemOriginal.powers);
+        this.posicao = new Ponto(personagemOriginal.posicao);
+        
     }
 
     public void setName(String name) {
@@ -118,7 +164,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     public void setItens(Item[] itens) {
         this.itens = itens;
     }
-
+    
     public String getName() {
         return name;
     }
@@ -183,45 +229,13 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         return MAX_CHARACTER_POINTS;
     }
     
-    
-
-    public Personagem() {
-        this.name = "";
-        this.height = 0.00F;
-        this.reflexes = 0;
-        this.physique = 0;
-        this.knowledge = 0;
-        this.perception = 0;
-        this.presence = 0;
-        this.speed = 0;
-        this.unarmedBDV = 0;
-        this.p_l_bonus = 0;
-        this.characterPoints = 0;
-        this.currentResistence = 0;
-        this.itens = new Item[12];
-        this.powers = new ArrayList<>();
+    public Ponto getPosicao() {
+        return posicao;
     }
 
-    public Personagem(Personagem personagemOriginal) {
-        this.name = personagemOriginal.name;
-        this.height = personagemOriginal.height;
-        this.reflexes = personagemOriginal.reflexes;
-        this.physique = personagemOriginal.physique;
-        this.knowledge = personagemOriginal.knowledge;
-        this.perception = personagemOriginal.perception;
-        this.presence = personagemOriginal.presence;
-        this.speed = personagemOriginal.speed;
-        this.unarmedBDV = personagemOriginal.unarmedBDV;
-        this.p_l_bonus = personagemOriginal.p_l_bonus;
-        this.characterPoints = personagemOriginal.characterPoints;
-        this.currentResistence = personagemOriginal.currentResistence;
-        this.itens = new Item[12];
-        this.itens = personagemOriginal.itens;
-        this.powers = new ArrayList<>();
-        this.powers.addAll(personagemOriginal.powers);
-        
+    public static int getMAX_PERSONAGENS_TIME() {
+        return MAX_PERSONAGENS_TIME;
     }
-    
     
     public abstract void inicializaPoderes();
     @Override 
