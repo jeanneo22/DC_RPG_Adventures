@@ -17,9 +17,9 @@ public abstract class Vilao extends Personagem{
     protected static final int MIN_VILLAIN_POINTS = 1;
     protected static final int MAX_VILLAIN_POINTS = 60;
 
-    public Vilao(int villainPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
-        super(name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence);
-        setHeroPoints(villainPoints);
+    public Vilao(int villainPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence, float x, float y) {
+        super(name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence, x, y);
+        setVillainPoints(villainPoints);
     }
 
     public Vilao() {
@@ -32,7 +32,7 @@ public abstract class Vilao extends Personagem{
         this.villainPoints = vilaoOriginal.villainPoints;
     }
 
-    public void setHeroPoints(int villainPoints) {
+    public void setVillainPoints(int villainPoints) {
         this.villainPoints = (villainPoints >= Vilao.MIN_VILLAIN_POINTS && villainPoints <= Vilao.MAX_VILLAIN_POINTS)?villainPoints:0;
     }
 

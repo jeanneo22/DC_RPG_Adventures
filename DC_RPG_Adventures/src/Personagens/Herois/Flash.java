@@ -5,6 +5,10 @@
  */
 
 package Personagens.Herois;
+import Fases.Mapa;
+import Fases.Ponto;
+import Personagens.Personagem;
+import Personagens.Viloes.Vilao;
 import java.util.ArrayList;
 
 /**
@@ -14,8 +18,8 @@ import java.util.ArrayList;
 public class Flash extends Heroi{
     private ArrayList <String> equipment;
 
-    public Flash(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
-        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence);
+    public Flash(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence,float x,float y) {
+        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence,x,y);
         this.equipment = new ArrayList<>();
         inicializaEquipment();
     }
@@ -43,14 +47,32 @@ public class Flash extends Heroi{
     public void inicializaEquipment() {
         this.equipment.add("costume");
     }
+    
     @Override
-    public void atacar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atacar(Personagem timePersonagens[]) {
+        boolean ehVilao = false;
+        float dist = 0.0f;
+        int i =0;
+        while(!ehVilao && dist > Mapa.getDIST_MAX_PARA_ATAQUE() && i < Personagem.MAX_PERSONAGENS_TIME) {
+             if(timePersonagens[i] instanceof Vilao) {
+                 ehVilao = true;
+                 dist = Ponto.distancia(this.getPosicao(),timePersonagens[i].getPosicao());
+             }
+             i++;
+        }
+        if(ehVilao && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) {
+            System.out.println("Atacar");
+            if(!timePersonagens[i].isDefesaAtiva()) {
+                timePersonagens[i].setCurrentResistence(timePersonagens[i].getCurrentResistence()-10);
+            }
+        }
+           
     }
 
     @Override
     public void defender() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defesaAtiva = true;
+        System.out.println("Defendendo-se");
     }
 
     @Override

@@ -6,6 +6,10 @@
 
 package Personagens.Viloes;
 
+import Fases.Mapa;
+import Fases.Ponto;
+import Personagens.Herois.Heroi;
+import Personagens.Personagem;
 import java.util.ArrayList;
 
 /**
@@ -16,8 +20,8 @@ public class Eclipso extends Vilao{
     private ArrayList <String> naturalAbilities;
     private ArrayList <String> equipment;
 
-    public Eclipso(int villainPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
-        super(villainPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence);
+    public Eclipso(int villainPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence,float x, float y) {
+        super(villainPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence,x,y);
         this.naturalAbilities = new ArrayList<>();
         this.equipment = new ArrayList<>();
         inicializaNaturalAbilities();
@@ -66,15 +70,34 @@ public class Eclipso extends Vilao{
     public void inicializaEquipment() {
         this.equipment.add("Heart of Darkness Shard");
     }
+    
     @Override
-    public void atacar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void atacar(Personagem timePersonagens[]) {
+        boolean ehHeroi = false;
+        float dist = 0.0f;
+        int i =0;
+        while(!ehHeroi && dist > Mapa.getDIST_MAX_PARA_ATAQUE() && i < Personagem.MAX_PERSONAGENS_TIME) {
+             if(timePersonagens[i] instanceof Heroi) {
+                 ehHeroi = true;
+                 dist = Ponto.distancia(this.getPosicao(),timePersonagens[i].getPosicao());
+             }
+             i++;
+        }
+        if(ehHeroi && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) {
+            System.out.println("Atacar");
+            if(!timePersonagens[i].isDefesaAtiva()) {
+                timePersonagens[i].setCurrentResistence(timePersonagens[i].getCurrentResistence()-10);
+            }
+        }
+           
     }
 
     @Override
     public void defender() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defesaAtiva = true;
+        System.out.println("Defendendo-se");
     }
+
 
     @Override
     public void mover() {

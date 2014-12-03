@@ -19,14 +19,14 @@ public class Aquaman extends Heroi{
     private ArrayList <String> naturalAbilities;
     private ArrayList <String> equipment;
 
-    public Aquaman(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
-        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence);
+    public Aquaman(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence, float x, float y) {
+        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence, x, y);
         this.naturalAbilities = new ArrayList<>();
         this.equipment = new ArrayList<>();
         inicializaNaturalAbilities();
         inicializaEquipment();
     }
-
+    
     public Aquaman() {
         super();
         this.naturalAbilities = new ArrayList<>();
@@ -82,12 +82,19 @@ public class Aquaman extends Heroi{
              }
              i++;
         }
-        if(ehVilao && dist <= 5) System.out.println("Atacar");
+        if(ehVilao && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) {
+            System.out.println("Atacar");
+            if(!timePersonagens[i].isDefesaAtiva()) {
+                timePersonagens[i].setCurrentResistence(timePersonagens[i].getCurrentResistence()-10);
+            }
+        }
+           
     }
 
     @Override
     public void defender() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defesaAtiva = true;
+        System.out.println("Defendendo-se");
     }
 
     @Override

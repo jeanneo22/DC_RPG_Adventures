@@ -82,7 +82,6 @@ public class Item implements Coletavel,Interagivel{
         return MAX_ITENS;
     }
     
-    
     public static Item[] inicializaItens(Item itens[]) {
         for(int i = 0; i < itens.length; i++) {
             itens[i].name = "";

@@ -29,6 +29,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
        depois que o heroi ou vilao tem sido criado
     */
     protected int characterPoints; 
+    protected boolean defesaAtiva; // indica se o personagem esta se defendendo
     protected ArrayList<String> powers; // Poderes do personagem
     protected int currentResistence; // resistencia atual do personagem
     protected Item itens[];
@@ -37,6 +38,8 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     protected static final int MIN_CHARACTER_POINTS = 1;
     protected static final int MAX_CHARACTER_POINTS = 400;
     protected static final int MAX_PERSONAGENS_TIME = 4;
+    protected static final int MIN_CURRENT_RESISTENCE = 0;
+    protected static final int MAX_CURRENT_RESISTENCE = 100;
     
     public abstract void atacar(Personagem timePersonagens[]);
     public abstract void defender();
@@ -153,12 +156,16 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.characterPoints = (characterPoints >= Personagem.MIN_CHARACTER_POINTS && characterPoints <= Personagem.MAX_CHARACTER_POINTS)?characterPoints:0;
     }
 
+    public void setDefesaAtiva(boolean defesaAtiva) {
+        this.defesaAtiva = (defesaAtiva == true || defesaAtiva==false)?defesaAtiva:false;
+    }
+
     public void setPowers(ArrayList<String> powers) {
         this.powers = powers;
     }
 
     public void setCurrentResistence(int currentResistence) {
-        this.currentResistence = (currentResistence >= 0 && currentResistence <= 100)?currentResistence:0;
+        this.currentResistence = (currentResistence >= Personagem.MIN_CURRENT_RESISTENCE && currentResistence <= Personagem.MAX_CURRENT_RESISTENCE)?currentResistence:0;
     }
 
     public void setItens(Item[] itens) {
@@ -207,6 +214,10 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
 
     public int getCharacterPoints() {
         return characterPoints;
+    }
+
+    public boolean isDefesaAtiva() {
+        return defesaAtiva;
     }
 
     public ArrayList<String> getPowers() {

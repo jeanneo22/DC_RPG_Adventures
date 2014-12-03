@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class Batman extends Heroi{
     private ArrayList <String> equipment;
     
-    public Batman(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence) {
-        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence);
+    public Batman(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence,float x,float y) {
+        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence,x,y);
         this.equipment = new ArrayList<>();
         inicializaEquipment();
     }
@@ -71,7 +71,7 @@ public class Batman extends Heroi{
              }
              i++;
         }
-        if(ehVilao && dist <= 5) System.out.println("Atacar");
+        if(ehVilao && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) System.out.println("Atacar");
     }
 
     @Override

@@ -16,6 +16,11 @@ public class Mapa {
     private String name;
     private ArrayList<String> places;
     private ArrayList<String> streets;
+    
+    private static int NUM_PLACES = 0;
+    private static final int MAX_NUM_PLACES = 5;
+    private static int NUM_STREETS = 0;
+    private static final int MAX_NUM_STREETS = 10;
     private static final int DIST_MAX_PARA_ATAQUE = 5;
 
     public String getName() {
