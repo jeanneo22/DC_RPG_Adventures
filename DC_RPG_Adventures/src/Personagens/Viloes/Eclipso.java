@@ -97,11 +97,11 @@ public class Eclipso extends Vilao{
         this.defesaAtiva = true;
         System.out.println("Defendendo-se");
     }
-
-
+    
     @Override
     public void mover() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setPosicaoPersonagem(this.posicaoPersonagem.getX()+10,this.posicaoPersonagem.getY()+10);
+        System.out.println("Eclipso movendo-se");
     }
     
     @Override

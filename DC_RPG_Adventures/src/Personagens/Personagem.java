@@ -33,7 +33,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     protected ArrayList<String> powers; // Poderes do personagem
     protected int currentResistence; // resistencia atual do personagem
     protected Item itens[];
-    protected Ponto posicao;
+    protected Ponto posicaoPersonagem;
     
     protected static final int MIN_CHARACTER_POINTS = 1;
     protected static final int MAX_CHARACTER_POINTS = 400;
@@ -70,7 +70,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.itens = new Item[10];
         this.itens = Item.inicializaItens(this.itens);
         this.powers = new ArrayList<>();
-        posicao = new Ponto(x,y);
+        this.posicaoPersonagem = new Ponto(x,y);
     }
     
      public Personagem() {
@@ -88,7 +88,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.currentResistence = 0;
         this.itens = new Item[12];
         this.powers = new ArrayList<>();
-        this.posicao = new Ponto();
+        this.posicaoPersonagem = new Ponto();
     }
 
     public Personagem(Personagem personagemOriginal) {
@@ -108,7 +108,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         this.itens = personagemOriginal.itens;
         this.powers = new ArrayList<>();
         this.powers.addAll(personagemOriginal.powers);
-        this.posicao = new Ponto(personagemOriginal.posicao);
+        this.posicaoPersonagem = new Ponto(personagemOriginal.posicaoPersonagem);
         
     }
 
@@ -170,6 +170,11 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
 
     public void setItens(Item[] itens) {
         this.itens = itens;
+    }
+    
+    public void setPosicaoPersonagem(float x,float y) {
+        this.posicaoPersonagem.setX(x);
+        this.posicaoPersonagem.setY(y);
     }
     
     public String getName() {
@@ -241,7 +246,7 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     }
     
     public Ponto getPosicao() {
-        return posicao;
+        return posicaoPersonagem;
     }
 
     public static int getMAX_PERSONAGENS_TIME() {
