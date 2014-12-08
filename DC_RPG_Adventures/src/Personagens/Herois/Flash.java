@@ -27,7 +27,6 @@ public class Flash extends Heroi{
     public Flash() {
         super();
         this.equipment = new ArrayList<>();
-        this.equipment.addAll(null);
     }
 
     public Flash(Flash flashOriginal) {

@@ -27,7 +27,6 @@ public class Deadshot extends Vilao{
     public Deadshot() {
         super();
         this.equipment = new ArrayList<>();
-        this.equipment.addAll(null);
     }
 
     public Deadshot(Deadshot deadshotOriginal) {

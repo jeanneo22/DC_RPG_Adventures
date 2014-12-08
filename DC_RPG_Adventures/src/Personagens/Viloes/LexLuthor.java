@@ -27,7 +27,6 @@ public class LexLuthor extends Vilao{
     public LexLuthor() {
         super();
         this.equipment = new ArrayList<>();
-        this.equipment.addAll(null);
     }
 
     public LexLuthor(LexLuthor lexLuthorOriginal) {

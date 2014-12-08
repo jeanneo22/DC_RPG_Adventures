@@ -28,7 +28,6 @@ public class WonderWoman extends Heroi{
     public WonderWoman() {
         super();
         this.equipment = new ArrayList<>();
-        this.equipment.addAll(null);
     }
 
     public WonderWoman(WonderWoman wonderWomanOriginal) {

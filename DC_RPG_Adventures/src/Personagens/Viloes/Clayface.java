@@ -28,7 +28,6 @@ public class Clayface extends Vilao{
     public Clayface() {
         super();
         this.naturalAbilities = new ArrayList<>();
-        this.naturalAbilities.addAll(null);
     }
 
     public Clayface(Clayface clayfaceOriginal) {

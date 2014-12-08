@@ -28,7 +28,6 @@ public class Batman extends Heroi{
     public Batman() {
         super();
         this.equipment = new ArrayList<>();
-        this.equipment.addAll(null);
     }
 
     public Batman(Batman batmanOriginal) {

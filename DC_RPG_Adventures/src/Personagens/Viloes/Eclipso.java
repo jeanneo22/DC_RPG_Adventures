@@ -32,8 +32,6 @@ public class Eclipso extends Vilao{
         super();
         this.naturalAbilities = new ArrayList<>();
         this.equipment = new ArrayList<>();
-        this.naturalAbilities.addAll(null);
-        this.equipment.addAll(null);
     }
 
     public Eclipso(Eclipso eclipsoOriginal) {

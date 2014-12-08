@@ -31,8 +31,6 @@ public class Aquaman extends Heroi{
         super();
         this.naturalAbilities = new ArrayList<>();
         this.equipment = new ArrayList<>();
-        this.naturalAbilities.addAll(null);
-        this.equipment.addAll(null);
     }
 
     public Aquaman(Aquaman aquamanOriginal) {

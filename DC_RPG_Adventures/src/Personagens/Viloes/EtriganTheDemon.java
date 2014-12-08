@@ -27,7 +27,6 @@ public class EtriganTheDemon extends Vilao{
     public EtriganTheDemon() {
         super();
         this.naturalAbilities = new ArrayList<>();
-        this.naturalAbilities.addAll(null);
     }
 
     public EtriganTheDemon(EtriganTheDemon etriganTheDemonOriginal) {

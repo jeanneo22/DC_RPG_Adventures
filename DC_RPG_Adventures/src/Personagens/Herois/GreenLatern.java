@@ -28,7 +28,6 @@ public class GreenLatern extends Heroi{
     public GreenLatern() {
         super();
         this.equipment = new ArrayList<>();
-        this.equipment.addAll(null);
     }
 
     public GreenLatern(GreenLatern greenLaternOriginal) {

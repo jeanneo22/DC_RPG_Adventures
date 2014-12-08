@@ -28,7 +28,6 @@ public class Amazo extends Vilao{
     public Amazo() {
         super();
         this.naturalAbilities = new ArrayList<>();
-        this.naturalAbilities.addAll(null);
     }
 
     public Amazo(Amazo amazoOriginal) {
