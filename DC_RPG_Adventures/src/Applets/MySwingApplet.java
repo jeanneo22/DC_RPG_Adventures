@@ -25,6 +25,8 @@ public class MySwingApplet extends JApplet{
     // Inicia o applet.
     @Override
     public void init() {
+        Thread t = new Thread();
+        t.start();
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override

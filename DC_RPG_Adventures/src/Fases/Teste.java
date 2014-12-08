@@ -14,7 +14,8 @@ import Applets.MySwingApplet;
  */
 public class Teste {
     public static void main(String args[]) {
-        MySwingApplet ms = new MySwingApplet();
+        Jogo jogo1 = new Jogo();
+        jogo1.criarJogo();
     }
     
 }

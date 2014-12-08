@@ -47,6 +47,8 @@ public class Mapa {
         this.name = mapaOriginal.name;
         this.height = mapaOriginal.height;
         this.width = mapaOriginal.width;
+        this.places = new ArrayList<>();
+        this.streets = new ArrayList<>();
         this.places.addAll(mapaOriginal.places);
         this.streets.addAll(mapaOriginal.streets);
     }
