@@ -7,14 +7,20 @@
 package Personagens;
 
 import Fases.Ponto;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jeanne
  */
-public abstract class Personagem implements Lutavel,Interagivel,Comparable<Personagem>{
+public abstract class Personagem implements Lutavel,Interagivel,Comparable<Personagem>,ActionListener{
     protected String name; // Nome do personagem
     protected float height; // Altura do personagem
     protected int reflexes; // indica reflexos do personagem
@@ -279,4 +285,67 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
         return s;
     }
     
+    private JLabel jlab;
+    private JFrame jframe;
+    public void mostraItens() {
+
+        
+        // Cria um contêiner JFrame.
+        jframe = new JFrame("Selecione uma opcao");
+        
+        //Especifica FlowLayout com gerenciador de leiaute
+       jframe.setLayout(new FlowLayout());
+       
+       // Fornece um tamanho inicial para o quadro
+       jframe.setSize(220,90);
+       
+       // Encerra o programa quando o usuario fecha o aplicativo
+       jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+       //Cria dois botoes.
+       JButton cltItem = new JButton("COLETAR ITEM");
+       JButton vItem = new JButton("VER ITENS");
+       JButton uItem = new JButton("USAR ITEM");
+       
+       
+       //Adiciona ouvintes de ação
+       cltItem.addActionListener((ActionListener) this);
+       vItem.addActionListener((ActionListener) this);
+       uItem.addActionListener((ActionListener) this);
+       
+       //Adiciona dois botões ao painel de conteúdo
+       jframe.add(cltItem);
+       jframe.add(vItem);
+       jframe.add(uItem);
+       
+       //Cria um rotulo
+       jlab = new JLabel("Faça uma escolha para sair feche");
+       jframe.add(jlab); 
+       
+       //Adiciona o rótulo ao quadro
+       jframe.add(jlab);
+       
+       // Exibe o quadro
+       jframe.setVisible(true);
+    }
+       
+       // Trata eventos de ação
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            byte i;
+            if(e.getActionCommand().equals("COLETAR ITEM")) {
+               i = Byte.parseByte(JOptionPane.showInputDialog("Digite um valor inteiro para o item(1-10)\n"));
+               this.itens[i].coletar(i-1,itens);
+               jframe.setVisible(false);
+               
+            }
+            else if(e.getActionCommand().equals("VER ITENS")) {
+                 JOptionPane.showMessageDialog(null,itens);
+                 jframe.setVisible(false);
+            }
+            else if(e.getActionCommand().equals("USAR ITEM")) {
+                 i = Byte.parseByte(JOptionPane.showInputDialog("Digite um valor inteiro para o item(1-10)\n"));
+                 this.itens[i].usarItem(i-1,itens);
+            }
+        }
 }

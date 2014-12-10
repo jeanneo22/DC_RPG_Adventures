@@ -6,6 +6,15 @@
 
 package Personagens;
 
+import Fases.Jogo;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jeanne
@@ -14,6 +23,7 @@ public class Item implements Coletavel,Interagivel{
     private String name;
     private String description;
     private static final short MAX_ITENS = 10;
+    
 
     public Item(String name, String description) {
         this.name = name;
@@ -52,17 +62,17 @@ public class Item implements Coletavel,Interagivel{
             itens[i].name = "Item"+Integer.toString(i);
             switch(i) {
                 case 1:
-                    itens[i].description = "Aumenta Reflexos temporariamente";
+                    itens[i].description = "Aumenta Reflexos";
                 case 2:
-                    itens[i].description = "Aumenta forca fisica temporariamente";
+                    itens[i].description = "Aumenta forca fisica";
                 case 3:
-                    itens[i].description = "Aumenta conhecimento temporariamente";
+                    itens[i].description = "Aumenta conhecimento";
                 case 4:
-                    itens[i].description = "Aumenta percepcao temporariamente";
+                    itens[i].description = "Aumenta percepcao";
                 case 5:
-                    itens[i].description = "Aumenta presenca temporariamente";
+                    itens[i].description = "Aumenta presenca";
                 case 6:
-                    itens[i].description = "Aumenta velocidade temporariamente";
+                    itens[i].description = "Aumenta velocidade";
                 case 7:
                     itens[i].description = "Aumenta pontos de Personagem";
                 case 8: 
@@ -91,9 +101,16 @@ public class Item implements Coletavel,Interagivel{
     }
     @Override
     public void coletar(int i,Item itens[]) {
-        Item todosItens[] = new Item[Item.MAX_ITENS];
-        todosItens = inicializaTodosItens();
-        itens[i] = todosItens[i];
+        if(i >= 0 && i < Item.MAX_ITENS) {
+            Item todosItens[] = new Item[Item.MAX_ITENS];
+            todosItens = inicializaTodosItens();
+            itens[i] = todosItens[i];
+        }
+    }
+    
+    public void usarItem(int i,Item itens[]) {
+        if(i >=0 && i < Item.MAX_ITENS)
+           itens[i] = null; 
     }
 
     @Override
@@ -105,9 +122,18 @@ public class Item implements Coletavel,Interagivel{
         return false;
     
     }
+    
+    @Override
+    public String toString() {
+        String s;
+        s = "Nome: "+this.name+"Descricao: "+this.description+"\n";
+        return s;
+    }
+    
 
     @Override
     public void interagir() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

@@ -26,11 +26,12 @@ public class Jogo extends JApplet {
     }
     protected Mapa mapas[] = new Mapa[5];
     protected Fase fases[] = new Fase[5];
-    protected ArrayList<Personagem> time = new ArrayList<>(4);
+    protected ArrayList<Personagem> time;
     protected String herois[] = {"Aquaman","Batman","Flash","GreenLatern","Superman","WonderWoman"};
     protected String viloes[] = {"Amazo","Clayface","Deadshot","Eclipso","EtriganTheDemon","LexLuthor"};
     protected static PersonagemEnum timeEscolhido;
     public void criarJogo() {
+        time = new ArrayList<>(4);
         for(int i = 0; i < 5; i++) {
             mapas[i] = new Mapa("Mapa"+Integer.toString(i),200,200);
             mapas[i].inserePlace("lugar "+Integer.toString(i));
@@ -47,5 +48,14 @@ public class Jogo extends JApplet {
         
         
         //Itens
+
+    public static PersonagemEnum getTimeEscolhido() {
+        return timeEscolhido;
     }
+
+    public static void setTimeEscolhido(PersonagemEnum timeEscolhido) {
+        Jogo.timeEscolhido = timeEscolhido;
+    }
+    
+}
        

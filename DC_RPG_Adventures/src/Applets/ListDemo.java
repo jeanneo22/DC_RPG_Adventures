@@ -72,7 +72,7 @@ public class ListDemo implements ListSelectionListener{
         // Exibe a seleção se um item foi selecionado
         if(idx != -1) {
             jlab.setText("Seleção atual: "+names[idx]);
-            jframe.setVisible(false);
+            //jframe.setVisible(false);
         }
         else
             jlab.setText("Por favor selecione um nome");
