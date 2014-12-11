@@ -6,11 +6,13 @@
 
 package Personagens;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Jeanne
  */
 public interface Lutavel {
-    public abstract void atacar(Personagem timePersonagens[]);
+    public abstract void atacar(ArrayList<Personagem> timePersonagens);
     public abstract void defender();
 }

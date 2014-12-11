@@ -21,7 +21,7 @@ public class SelecaoPersonagensTime extends Jogo implements ListSelectionListene
     private JLabel jlab;
     private JScrollPane jScrollPane;
     private JFrame jframe;
-    private ArrayList<String> selecionados;
+    
     private static int i = 0;
     
     SelecaoPersonagensTime() {
@@ -78,12 +78,13 @@ public class SelecaoPersonagensTime extends Jogo implements ListSelectionListene
             int idx = jList.getSelectedIndex();
         
             // Exibe a seleção se um item foi selecionado
-            if(Jogo.timeEscolhido == Jogo.PersonagemEnum.HEROI && idx != -1 && !this.selecionados.contains(herois[idx]) && i < 4) {
+            if(Jogo.getTimeEscolhido() == Jogo.PersonagemEnum.HEROI && idx != -1 && !this.selecionados.contains(herois[idx]) && i < 4) {
                 jlab.setText("Seleção atual: "+herois[idx]);
                 selecionados.add(herois[idx]);
                 switch(idx) {
                         case 0:
-                            time.add(new Aquaman());
+                            Aquaman a = new Aquaman();
+                            time.add(a);
                             i++;
                             break;
                         case 1:
@@ -111,7 +112,6 @@ public class SelecaoPersonagensTime extends Jogo implements ListSelectionListene
                 jlab.setText("Por favor escolha um personagem");
             if(Jogo.timeEscolhido == Jogo.PersonagemEnum.VILAO && idx != -1 && !this.selecionados.contains(viloes[idx]) && i < 4) {
                 jlab.setText("Seleção atual: "+viloes[idx]);
-                jframe.add(jlab);
                 selecionados.add(viloes[idx]);
                 switch(idx) {
                         case 0:

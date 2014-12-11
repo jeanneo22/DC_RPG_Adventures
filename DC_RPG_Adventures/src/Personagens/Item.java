@@ -6,13 +6,6 @@
 
 package Personagens;
 
-import Fases.Jogo;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -133,7 +126,8 @@ public class Item implements Coletavel,Interagivel{
 
     @Override
     public void interagir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        byte msg;
+        msg = Byte.parseByte(JOptionPane.showInputDialog("Interagir com o item? 1- sim 2- nao"));
     }
     
 }

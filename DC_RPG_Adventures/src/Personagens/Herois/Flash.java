@@ -19,7 +19,9 @@ public class Flash extends Heroi{
     private ArrayList <String> equipment;
 
     public Flash(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence,float x,float y) {
-        super(heroPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence,x,y);
+        super(heroPoints, name, height, reflexes, physique, 
+              knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, 
+              characterPoints, currentResistence,x,y);
         this.equipment = new ArrayList<>();
         inicializaEquipment();
     }
@@ -48,21 +50,21 @@ public class Flash extends Heroi{
     }
     
     @Override
-    public void atacar(Personagem timePersonagens[]) {
+    public void atacar(ArrayList <Personagem> timePersonagens) {
         boolean ehVilao = false;
         float dist = 0.0f;
         int i =0;
         while(!ehVilao && dist > Mapa.getDIST_MAX_PARA_ATAQUE() && i < Personagem.MAX_PERSONAGENS_TIME) {
-             if(timePersonagens[i] instanceof Vilao) {
+             if(timePersonagens.get(i) instanceof Vilao) {
                  ehVilao = true;
-                 dist = Ponto.distancia(this.getPosicao(),timePersonagens[i].getPosicao());
+                 dist = Ponto.distancia(this.getPosicao(),timePersonagens.get(i).getPosicao());
              }
              i++;
         }
         if(ehVilao && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) {
             System.out.println("Atacar");
-            if(!timePersonagens[i].isDefesaAtiva()) {
-                timePersonagens[i].setCurrentResistence(timePersonagens[i].getCurrentResistence()-10);
+            if(!timePersonagens.get(i).isDefesaAtiva()) {
+                timePersonagens.get(i).setCurrentResistence(timePersonagens.get(i).getCurrentResistence()-10);
             }
         }
            

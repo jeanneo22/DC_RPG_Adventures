@@ -18,7 +18,8 @@ public abstract class Heroi extends Personagem{
     protected static final int MAX_HERO_POINTS = 30;
 
     public Heroi(int heroPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence, float x, float y) {
-        super(name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence, x, y);
+        super(name, height, reflexes, physique, knowledge, perception, presence, 
+              speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence, x, y);
         setHeroPoints(heroPoints);
     }
 

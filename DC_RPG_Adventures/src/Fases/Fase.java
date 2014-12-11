@@ -13,42 +13,50 @@ package Fases;
 public class Fase {
     private int number;
     private Mapa map;
-    private static int FASES = 0;
     private static final int MAX_NUM_FASES = 5;
 
     public Fase(int number, Mapa map) {
-        if(Fase.FASES < Fase.MAX_NUM_FASES) {
             this.number = number;
             this.map = new Mapa(map);
-            FASES++;
-        }
-        else {
-            System.out.println("Fase nao pode ser criada");
-        }
     }
 
     public Fase() {
-        if(Fase.FASES < Fase.MAX_NUM_FASES) {
             this.number = 0;
             this.map = new Mapa();
-            FASES++;
-        }
-        else {
-            System.out.println("Fase nao pode ser criada");
-        }
     }
 
     public Fase(Fase faseOriginal) {
-        if(Fase.FASES < Fase.MAX_NUM_FASES) {
             this.number = faseOriginal.number;
             this.map = new Mapa(faseOriginal.map);
-            FASES++;
-        }
-        else {
-            System.out.println("Fase nao pode ser criada");
-        }
-        
     }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setMap(Mapa map) {
+        this.map = map;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public Mapa getMap() {
+        return map;
+    }
+
+    public static int getMAX_NUM_FASES() {
+        return MAX_NUM_FASES;
+    }
+    
+    @Override
+    public String toString() {
+        String s;
+        s = "Fase "+this.number+"Mapa: "+map.toString();
+        return s;
+    }
+    
     
     
     

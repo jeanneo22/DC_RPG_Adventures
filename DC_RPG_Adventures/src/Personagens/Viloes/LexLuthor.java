@@ -8,6 +8,7 @@ package Personagens.Viloes;
 
 import Fases.Mapa;
 import Fases.Ponto;
+import Personagens.Herois.Heroi;
 import Personagens.Personagem;
 import java.util.ArrayList;
 
@@ -19,7 +20,9 @@ public class LexLuthor extends Vilao{
     private ArrayList <String> equipment;
 
        public LexLuthor(int villainPoints, String name, float height, int reflexes, int physique, int knowledge, int perception, int presence, int speed, int unarmedBDV, int p_l_bonus, int characterPoints, int currentResistence,float x,float y) {
-        super(villainPoints, name, height, reflexes, physique, knowledge, perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, currentResistence,x,y);
+        super(villainPoints, name, height, reflexes, physique, knowledge, 
+                perception, presence, speed, unarmedBDV, p_l_bonus, characterPoints, 
+                currentResistence,x,y);
         this.equipment = new ArrayList<>();
         inicializaEquipment();
     }
@@ -48,21 +51,21 @@ public class LexLuthor extends Vilao{
     }
     
     @Override
-    public void atacar(Personagem timePersonagens[]) {
+    public void atacar(ArrayList <Personagem> timePersonagens) {
         boolean ehHeroi = false;
         float dist = 0.0f;
         int i =0;
         while(!ehHeroi && dist > Mapa.getDIST_MAX_PARA_ATAQUE() && i < Personagem.MAX_PERSONAGENS_TIME) {
-             if(timePersonagens[i] instanceof Vilao) {
+             if(timePersonagens.get(i) instanceof Heroi) {
                  ehHeroi = true;
-                 dist = Ponto.distancia(this.getPosicao(),timePersonagens[i].getPosicao());
+                 dist = Ponto.distancia(this.getPosicao(),timePersonagens.get(i).getPosicao());
              }
              i++;
         }
         if(ehHeroi && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) {
             System.out.println("Atacar");
-            if(!timePersonagens[i].isDefesaAtiva()) {
-                timePersonagens[i].setCurrentResistence(timePersonagens[i].getCurrentResistence()-10);
+            if(!timePersonagens.get(i).isDefesaAtiva()) {
+                timePersonagens.get(i).setCurrentResistence(timePersonagens.get(i).getCurrentResistence()-10);
             }
         }
            
@@ -90,7 +93,7 @@ public class LexLuthor extends Vilao{
         String s;
         s = "\nLex Luthor";
         s += super.toString();
-        s  += "\nEquipaments: "+this.equipment.toString();
+        s  += "\nEquipments: "+this.equipment.toString();
         return s;
     }
     

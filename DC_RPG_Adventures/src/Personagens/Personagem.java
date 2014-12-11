@@ -47,10 +47,11 @@ public abstract class Personagem implements Lutavel,Interagivel,Comparable<Perso
     protected static final int MIN_CURRENT_RESISTENCE = 0;
     protected static final int MAX_CURRENT_RESISTENCE = 100;
     
-    public abstract void atacar(Personagem timePersonagens[]);
+    public abstract void atacar(ArrayList<Personagem> timePersonagens);
     public abstract void defender();
 
     public abstract void mover();
+    @Override
     public void interagir() {
         byte msg;
         msg = Byte.parseByte(JOptionPane.showInputDialog("Escolha uma mensagem: \n 1. Vou investigar o mapa"    

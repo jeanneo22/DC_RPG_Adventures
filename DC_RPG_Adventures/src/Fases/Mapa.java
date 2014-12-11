@@ -27,6 +27,8 @@ public class Mapa {
     private static final short MAX_HEIGHT = 200;
     private static final short MAX_WIDHT = 200;
     
+    private static final int MAX_NUM_MAPAS = 5;
+    
     public Mapa(String name,int height,int width) {
         this.name = name;
         setHeight(height);
@@ -96,7 +98,18 @@ public class Mapa {
     public static int getDIST_MAX_PARA_ATAQUE() {
         return DIST_MAX_PARA_ATAQUE;
     }
-    
 
+    public static int getMAX_NUM_MAPAS() {
+        return MAX_NUM_MAPAS;
+    }
+    
+    
+    @Override
+    public String toString() {
+        String s;
+        s = "Mapa "+this.name+"Altura: "+this.height+"Largura "+this.width+
+             "Ruas: "+this.streets.toString()+"Lugares: "+this.places.toString();
+        return s;
+    }
     
 }

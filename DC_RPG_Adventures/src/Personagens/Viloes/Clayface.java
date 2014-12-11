@@ -51,26 +51,25 @@ public class Clayface extends Vilao{
     }
 
     @Override
-    public void atacar(Personagem timePersonagens[]) {
+    public void atacar(ArrayList <Personagem> timePersonagens) {
         boolean ehHeroi = false;
         float dist = 0.0f;
         int i =0;
         while(!ehHeroi && dist > Mapa.getDIST_MAX_PARA_ATAQUE() && i < Personagem.MAX_PERSONAGENS_TIME) {
-             if(timePersonagens[i] instanceof Heroi) {
+             if(timePersonagens.get(i) instanceof Heroi) {
                  ehHeroi = true;
-                 dist = Ponto.distancia(this.getPosicao(),timePersonagens[i].getPosicao());
+                 dist = Ponto.distancia(this.getPosicao(),timePersonagens.get(i).getPosicao());
              }
              i++;
         }
         if(ehHeroi && dist <= Mapa.getDIST_MAX_PARA_ATAQUE()) {
             System.out.println("Atacar");
-            if(!timePersonagens[i].isDefesaAtiva()) {
-                timePersonagens[i].setCurrentResistence(timePersonagens[i].getCurrentResistence()-10);
+            if(!timePersonagens.get(i).isDefesaAtiva()) {
+                timePersonagens.get(i).setCurrentResistence(timePersonagens.get(i).getCurrentResistence()-10);
             }
         }
            
     }
-
     @Override
     public void defender() {
         this.defesaAtiva = true;
